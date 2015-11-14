@@ -20,7 +20,12 @@ end
 
 class BelongsToOptions < AssocOptions
   def initialize(name, options = {})
-    # ...
+    defaults = {
+      class_name: "#{name.singularize.upcase}",
+      primary_key: :id,
+      foreign_key: "{name.underscore}id".to_sym
+    }
+    options = defaults.merge(options)
   end
 end
 
